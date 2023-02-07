@@ -1,15 +1,34 @@
-function BlockStart()
+import * as THREE from 'three'
+
+THREE.ColorManagement.legacyMode = false
+
+const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
+
+const floor1Material = new THREE.MeshStandardMaterial({color: "limegreen" })
+const floor2Material = new THREE.MeshStandardMaterial({color: "greenyellow" })
+const obstacleMaterial = new THREE.MeshStandardMaterial({color: "orangered" })
+const wallMaterial = new THREE.MeshStandardMaterial({color: "slategrey" })
+/**
+ * Starting Block
+ */
+
+function BlockStart({position = [ 0, 0, 0] })
 {
-    return <mesh position={ [ 0, -0.1, 0] } receiveShadow>
-        <boxGeometry args={ [ 4, 0.2, 4 ] } />
-        <meshStandardMaterial color="limegreen" />
-    </mesh>
+    return <group position={ position }>
+        <mesh
+            geometry={ boxGeometry}
+            material={ floor1Material }
+            position={ [ 0, -0.1, 0] }
+            scale={ [ 4, 0.2, 4 ] }
+            receiveShadow
+        />
+    </group>
 }
 
 export default function Level()
 {
     return <>
-    
+
         <BlockStart />
     </>
 }
