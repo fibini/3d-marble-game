@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { RigidBody } from '@react-three/rapier'
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
+import { useFrame } from '@react-three/fiber'
 
 THREE.ColorManagement.legacyMode = false
 
@@ -17,6 +18,8 @@ const wallMaterial = new THREE.MeshStandardMaterial({color: "slategrey" })
 function BlockStart({position = [ 0, 0, 0] })
 {
     return <group position={ position }>
+
+        {/* starting floor */}
         <mesh
             geometry={ boxGeometry}
             material={ floor1Material }
@@ -27,10 +30,27 @@ function BlockStart({position = [ 0, 0, 0] })
     </group>
 }
 
+/**
+ * Block 2
+ */
+
 function BlockSpinner({position = [ 0, 0, 0] })
 {
     const obstacle = useRef()
+    const [ speed ] = useState(() => Math.random() + 0.2)
+
+    useFrame((state) =>
+    {
+        const time = state.clock.getElapsedTime()
+        const rotation = new THREE. Quaternion()
+        rotation.setFromEuler(new THREE.Euler(0, time * speed, 0))
+        obstacle.current.setNextKinematicRotation(rotation)
+    })
+    
+
     return <group position={ position }>
+
+        {/* floor 2 */}
         <mesh
             geometry={ boxGeometry}
             material={ floor2Material }
@@ -39,7 +59,14 @@ function BlockSpinner({position = [ 0, 0, 0] })
             receiveShadow
         />
 
-        <RigidBody ref={ obstacle } type="kinematicPosition" position={ [0, 0.3, 0]} restitution={ 0.2 } friction={ 0 }>
+        {/* first obstacle */}
+        <RigidBody
+            ref={ obstacle } 
+            type="kinematicPosition" 
+            position={ [0, 0.3, 0]} 
+            restitution={ 0.2 } 
+            friction={ 0 }
+         >
             <mesh 
                 geometry={ boxGeometry}
                 material={ obstacleMaterial }
