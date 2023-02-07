@@ -37,7 +37,7 @@ function BlockStart({position = [ 0, 0, 0] })
 function BlockSpinner({position = [ 0, 0, 0] })
 {
     const obstacle = useRef()
-    const [ speed ] = useState(() => Math.random() + 0.2)
+    const [ speed ] = useState(() => (Math.random() + 0.2) * (Math.random() < 0.5 ? -1 : 1))
 
     useFrame((state) =>
     {
