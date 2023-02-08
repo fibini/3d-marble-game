@@ -20,12 +20,31 @@ export default function Player()
         const impulse = { x: 0, y: 0, z: 0 }
         const torque = { x: 0, y: 0, z: 0 }
 
-        const impulseStrength = 1 * delta
-        const torqueStrngth = 1 * delta
+        const impulseStrength = 0.6 * delta
+        const torqueStrngth = 0.2 * delta
 
         if(forward)
         {
             impulse.z -= impulseStrength
+            torque.x -= torqueStrngth
+        }
+
+        if(rightward)
+        {
+            impulse.x += impulseStrength
+            torque.z -= torqueStrngth
+        }
+
+        if(backward)
+        {
+            impulse.z += impulseStrength
+            torque.x += torqueStrngth
+        }
+
+        if(leftward)
+        {
+            impulse.x -= impulseStrength
+            torque.z += torqueStrngth
         }
         
         body.current.applyImpulse(impulse)
