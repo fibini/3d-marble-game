@@ -15,7 +15,7 @@ export default function Player()
     const { rapier, world } = useRapier()
     const rapierWorld = world.raw()
 
-    const [ smoothedCameraPosition ] = useState(() => new THREE.Vector3() )
+    const [ smoothedCameraPosition ] = useState(() => new THREE.Vector3(0, 0, 30) )
     const [ smoothedCameraTarget ] = useState(() => new THREE.Vector3() )
 
     const jump = () =>
@@ -88,7 +88,7 @@ export default function Player()
 
         const cameraPosition = new THREE.Vector3()
         cameraPosition.copy(bodyPosition)
-        cameraPosition.z += 2.50
+        cameraPosition.z += 4
         cameraPosition.y += 0.65
 
         const cameraTarget = new THREE.Vector3()
