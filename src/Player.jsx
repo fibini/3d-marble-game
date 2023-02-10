@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber"
 import { useKeyboardControls } from "@react-three/drei"
 import { useState, useEffect, useRef } from "react"
 import * as THREE from 'three'
+import useGame from "./stores/useGame.jsx"
 
 /**
  * Player
@@ -17,6 +18,8 @@ export default function Player()
 
     const [ smoothedCameraPosition ] = useState(() => new THREE.Vector3(0, 0, 10) )
     const [ smoothedCameraTarget ] = useState(() => new THREE.Vector3() )
+
+    const start = useGame((state) => state.start)
 
     const jump = () =>
     {
@@ -42,7 +45,7 @@ export default function Player()
 
             const unsubscribeAny = subscribeKeys(() =>
             {
-                console.log('any key down')
+                start()
             })
             return () =>
             {
