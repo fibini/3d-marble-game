@@ -3,8 +3,7 @@ import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { useMemo, useState, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
-import { LoadingManager } from 'three'
-import { LinearToSRGB } from 'three/src/math/ColorManagement'
+
 
 THREE.ColorManagement.legacyMode = false
 
@@ -247,7 +246,7 @@ function Bounds({ length = 1 })
     </>
 }
 
-export function Level({ count = 5, types = [ BlockSpinner, BlockAxe, BlockLimbo ] })
+export function Level({ count = 5, types = [ BlockSpinner, BlockAxe, BlockLimbo ], seed = 0 })
 {
     const blocks = useMemo(() =>
     {
@@ -260,7 +259,7 @@ export function Level({ count = 5, types = [ BlockSpinner, BlockAxe, BlockLimbo 
         }
         return blocks
         
-    }, [ count, types ])
+    }, [ count, types, seed ])
 
     return <>
 
