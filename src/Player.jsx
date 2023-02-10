@@ -39,9 +39,15 @@ export default function Player()
                 if(value)
                     jump()
             })
+
+            const unsubscribeAny = subscribeKeys(() =>
+            {
+                console.log('any key down')
+            })
             return () =>
             {
                 unsubscribeJump()
+                unsubscribeAny()
             }
     }, [])
 
