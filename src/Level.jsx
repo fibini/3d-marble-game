@@ -195,7 +195,7 @@ export function BlockAxe({position = [ 0, 0, 0] })
 
 export function BlockEnd({position = [ 0, 0, 0] })
 {
-    const hamburger = useGLTF("./hamburger.glb")
+    const hamburger = useGLTF("https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/full-chest/model.gltf")
 
     hamburger.scene.children.forEach((mesh) =>
     {
@@ -220,7 +220,7 @@ export function BlockEnd({position = [ 0, 0, 0] })
             receiveShadow
         />
         <RigidBody type="fixed" colliders="hull" position={ [0, 0.25, 0] } restitution={ 0.2 } friction={ 0 }>
-            <primitive object={ hamburger.scene } scale={ 0.2 } />
+            <primitive object={ hamburger.scene } scale={ 1 } rotation={ [0.2, 0, 0] } />
         </RigidBody>
     </group>
 }
