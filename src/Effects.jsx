@@ -4,7 +4,7 @@ export default function Effects()
 {
     return <EffectComposer disableNormalPass>
             <SSR
-            intensity={ 0.45 }
+            intensity={ 0.5 }
             exponent={ 1 }
             distance={ 10 }
             fade={ 10 }
